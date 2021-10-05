@@ -60,7 +60,7 @@ public class VistaContactos extends javax.swing.JFrame {
         jlApellido = new javax.swing.JLabel();
         tfNombre = new javax.swing.JTextField();
         tfApellido = new javax.swing.JTextField();
-        jbGuardar = new javax.swing.JButton();
+        jbVCGuardar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -91,14 +91,22 @@ public class VistaContactos extends javax.swing.JFrame {
         jlApellido.setText("APELLIDO:");
 
         tfNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tfNombre.setNextFocusableComponent(tfApellido);
 
         tfApellido.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tfApellido.setNextFocusableComponent(tfCiudad);
 
-        jbGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jbGuardar.setText("GUARDAR");
-        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+        jbVCGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbVCGuardar.setText("GUARDAR");
+        jbVCGuardar.setNextFocusableComponent(jbModificar);
+        jbVCGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbGuardarActionPerformed(evt);
+                jbVCGuardarActionPerformed(evt);
+            }
+        });
+        jbVCGuardar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jbVCGuardarKeyReleased(evt);
             }
         });
 
@@ -140,6 +148,13 @@ public class VistaContactos extends javax.swing.JFrame {
         });
 
         tfTelefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tfTelefono.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tfTelefono.setNextFocusableComponent(tfDni);
+        tfTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfTelefonoActionPerformed(evt);
+            }
+        });
         tfTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfTelefonoKeyTyped(evt);
@@ -152,16 +167,19 @@ public class VistaContactos extends javax.swing.JFrame {
         jlTelefono.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         tfDni.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tfDni.setNextFocusableComponent(tfNombre);
 
         jlDni.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlDni.setText("DNI:");
 
         tfCiudad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tfCiudad.setNextFocusableComponent(tfDireccion);
 
         jlCiudad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlCiudad.setText("CIUDAD:");
 
         tfDireccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tfDireccion.setNextFocusableComponent(jbVCGuardar);
 
         jlDireccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlDireccion.setText("DIRECCION:");
@@ -211,7 +229,7 @@ public class VistaContactos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbVCGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +241,6 @@ public class VistaContactos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
                                 .addComponent(jlBuscar)
                                 .addGap(18, 18, 18)
                                 .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -258,7 +275,7 @@ public class VistaContactos extends javax.swing.JFrame {
                         .addGap(0, 6, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbGuardar)
+                        .addComponent(jbVCGuardar)
                         .addGap(18, 18, 18)
                         .addComponent(jbModificar)
                         .addGap(18, 18, 18)
@@ -295,15 +312,13 @@ public class VistaContactos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 73, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+    private void jbVCGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVCGuardarActionPerformed
       
         if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& !tfTelefono.getText().equals("")){
            Contacto c = new Contacto();
@@ -325,7 +340,7 @@ public class VistaContactos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"INGRESE LOS DATOS SOLICITADOS");
         }
         
-    }//GEN-LAST:event_jbGuardarActionPerformed
+    }//GEN-LAST:event_jbVCGuardarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         if(jtDatos.getSelectedRow()<0){
@@ -362,6 +377,34 @@ public class VistaContactos extends javax.swing.JFrame {
         // TODO add your handling code here:
         filtrar();
     }//GEN-LAST:event_tfBuscarKeyReleased
+
+    private void jbVCGuardarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbVCGuardarKeyReleased
+        // TODO add your handling code here:
+        if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& !tfTelefono.getText().equals("")){
+           Contacto c = new Contacto();
+           c.setTelefono(tfTelefono.getText());
+           c.setDni(tfDni.getText());
+           c.setNombre(tfNombre.getText());
+           c.setApellido(tfApellido.getText());
+           c.setCiudad(tfCiudad.getText());
+           c.setDireccion(tfDireccion.getText());
+           contactos.add(c);
+           tfTelefono.setText("");
+           tfDni.setText("");
+           tfNombre.setText("");
+           tfApellido.setText("");
+           tfCiudad.setText("");
+           tfDireccion.setText("");
+           tfTelefono.requestFocus();
+           mostrarDatos();
+        }else{
+        JOptionPane.showMessageDialog(null,"INGRESE LOS DATOS SOLICITADOS");
+        }
+    }//GEN-LAST:event_jbVCGuardarKeyReleased
+
+    private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTelefonoActionPerformed
 
     private void filtrar(){
         try { 
@@ -419,8 +462,8 @@ public class VistaContactos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbEliminar;
-    private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbModificar;
+    private javax.swing.JButton jbVCGuardar;
     private javax.swing.JLabel jlApellido;
     private javax.swing.JLabel jlBuscar;
     private javax.swing.JLabel jlCiudad;

@@ -1,22 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vistas;
 
 import clases.Contacto;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author informatica
- */
 public class VistaModificar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaModificar
-     */
     Contacto c;
     VistaContactos vc;
     public VistaModificar(Contacto c,VistaContactos vc) {
@@ -33,7 +21,7 @@ public class VistaModificar extends javax.swing.JFrame {
         tfCiudad.setText(c.getCiudad());
         tfDireccion.setText(c.getDireccion());
     }
-
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +46,7 @@ public class VistaModificar extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tfDireccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +87,16 @@ public class VistaModificar extends javax.swing.JFrame {
         jLabel4.setText("TELEFONO:");
 
         tfTelefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tfTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfTelefonoActionPerformed(evt);
+            }
+        });
+        tfTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfTelefonoKeyTyped(evt);
+            }
+        });
 
         tfCiudad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -108,6 +107,9 @@ public class VistaModificar extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("DIRECCION:");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setText("MODIFICAR USUARIO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,7 +133,6 @@ public class VistaModificar extends javax.swing.JFrame {
                             .addComponent(tfCiudad, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfApellido)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,13 +147,18 @@ public class VistaModificar extends javax.swing.JFrame {
                             .addComponent(tfDni)
                             .addComponent(tfNombre, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -170,9 +176,9 @@ public class VistaModificar extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,10 +211,15 @@ public class VistaModificar extends javax.swing.JFrame {
         this.vc.setVisible(true);
     }//GEN-LAST:event_jbVMCancelarActionPerformed
 
+    
     private void jbVMGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVMGuardarActionPerformed
         if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")){
+            this.c.setTelefono(tfTelefono.getText());
+            this.c.setDni(tfDni.getText());
             this.c.setNombre(tfNombre.getText());
             this.c.setApellido(tfApellido.getText());
+            this.c.setCiudad(tfCiudad.getText());
+            this.c.setDireccion(tfDireccion.getText());
             this.dispose();
             this.vc.setVisible(true);
             this.vc.mostrarDatos();
@@ -216,6 +227,20 @@ public class VistaModificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"INGRESE LA INFORMACION SOLICITADA");
         }
     }//GEN-LAST:event_jbVMGuardarActionPerformed
+
+    private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTelefonoActionPerformed
+
+    private void tfTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTelefonoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c>='0' && c<='9'){
+
+        }else{
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfTelefonoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -229,6 +254,7 @@ public class VistaModificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbVMCancelar;
     private javax.swing.JButton jbVMGuardar;

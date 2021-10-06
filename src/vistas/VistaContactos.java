@@ -15,6 +15,7 @@ public class VistaContactos extends javax.swing.JFrame {
     DefaultTableModel modelo;
     static int codigo = 1;
     
+    
     public VistaContactos() {
         initComponents();
         contactos = new ArrayList();
@@ -45,6 +46,10 @@ public class VistaContactos extends javax.swing.JFrame {
     sorter= new TableRowSorter<>(modelo);
     jtDatos.setRowSorter(sorter);
     }
+    
+    
+    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,9 +97,24 @@ public class VistaContactos extends javax.swing.JFrame {
 
         tfNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tfNombre.setNextFocusableComponent(tfApellido);
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
 
         tfApellido.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tfApellido.setNextFocusableComponent(tfCiudad);
+        tfApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfApellidoActionPerformed(evt);
+            }
+        });
+        tfApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfApellidoKeyTyped(evt);
+            }
+        });
 
         jbVCGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jbVCGuardar.setText("GUARDAR");
@@ -168,6 +188,11 @@ public class VistaContactos extends javax.swing.JFrame {
 
         tfDni.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tfDni.setNextFocusableComponent(tfNombre);
+        tfDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDniKeyTyped(evt);
+            }
+        });
 
         jlDni.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlDni.setText("DNI:");
@@ -319,29 +344,34 @@ public class VistaContactos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbVCGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVCGuardarActionPerformed
-      
-        if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& !tfTelefono.getText().equals("")){
-           Contacto c = new Contacto();
-           c.setTelefono(tfTelefono.getText());
-           c.setDni(tfDni.getText());
-           c.setNombre(tfNombre.getText());
-           c.setApellido(tfApellido.getText());
-           c.setCiudad(tfCiudad.getText());
-           c.setDireccion(tfDireccion.getText());
-           contactos.add(c);
-           tfTelefono.setText("");
-           tfDni.setText("");
-           tfNombre.setText("");
-           tfApellido.setText("");
-           tfCiudad.setText("");
-           tfDireccion.setText("");
-           mostrarDatos();
-        }else{
-        JOptionPane.showMessageDialog(null,"INGRESE LOS DATOS SOLICITADOS");
-        }
-        
+                
+            if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& (!tfTelefono.getText().equals(""))){
+                Contacto c = new Contacto();         
+                
+                    
+                c.setTelefono(tfTelefono.getText());
+                c.setDni(tfDni.getText());
+                c.setNombre(tfNombre.getText());
+                c.setApellido(tfApellido.getText());
+                c.setCiudad(tfCiudad.getText());
+                c.setDireccion(tfDireccion.getText());                          
+                
+                contactos.add(c);
+                tfTelefono.setText("");
+                tfDni.setText("");
+                tfNombre.setText("");
+                tfApellido.setText("");
+                tfCiudad.setText("");
+                tfDireccion.setText("");
+                mostrarDatos();
+             }else{
+                 JOptionPane.showMessageDialog(null,"INGRESE LOS DATOS SOLICITADOS");
+            }        
     }//GEN-LAST:event_jbVCGuardarActionPerformed
-
+        
+    
+    
+    
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         if(jtDatos.getSelectedRow()<0){
         JOptionPane.showMessageDialog(null,"SELECCIONE EL REGISTRO A ELIMINAR");
@@ -405,6 +435,40 @@ public class VistaContactos extends javax.swing.JFrame {
     private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTelefonoActionPerformed
+
+    private void tfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDniKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c>='0' && c<='9'){
+
+        }else{
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfDniKeyTyped
+
+    private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(Character.isLetter(evt.getKeyChar())){
+            
+        }else{
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNombreKeyTyped
+
+    private void tfApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfApellidoActionPerformed
+
+    private void tfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(Character.isLetter(evt.getKeyChar())){
+            
+        }else{
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfApellidoKeyTyped
 
     private void filtrar(){
         try { 

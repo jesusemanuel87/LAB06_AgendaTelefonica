@@ -218,6 +218,9 @@
               <ComponentRef name="tfApellido"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNombreKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfApellido">
           <Properties>
@@ -228,6 +231,10 @@
               <ComponentRef name="tfCiudad"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfApellidoActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfApellidoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbVCGuardar">
           <Properties>
@@ -335,6 +342,9 @@
               <ComponentRef name="tfNombre"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfDniKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlDni">
           <Properties>

@@ -344,7 +344,15 @@ public class VistaContactos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbVCGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVCGuardarActionPerformed
-                
+long telefono=0;
+int err=0;
+try{
+telefono=Integer.parseInt(tfTelefono.getText());
+}
+catch(NumberFormatException ex){
+    JOptionPane.showMessageDialog(this,"Volver a cargar, en campo telefono ingresar solo numeros");
+    err=1;
+}                
             if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& (!tfTelefono.getText().equals(""))){
                 Contacto c = new Contacto();         
                 
